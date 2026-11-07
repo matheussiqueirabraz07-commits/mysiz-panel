@@ -98,7 +98,7 @@ void patchMemory(uintptr_t address, const void *bytes, size_t size) {
 
 - (void)toggleAimbot:(UISwitch *)sender {
     uint32_t val = sender.isOn ? 1 : 0;
-    patchMemory(getRealOffset(0x5E6F7G8H), &val, sizeof(val)); 
+    patchMemory(getRealOffset(0x5E6F7G8H), &val, sizeof(val));  
 }
 @end
 
