@@ -1,0 +1,25 @@
+name: Build Tweak
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Theos
+      run: |
+        git clone --recursive https://github.com/theos/theos.git $HOME/theos
+        echo "$HOME/theos/bin" >> $GITHUB_PATH
+
+    - name: Build Package
+      run: |
+        export THEOS=$HOME/theos
+        make package
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: MysizPanel-Tweak
+        path: .theos/obj/debug/*.dylib
