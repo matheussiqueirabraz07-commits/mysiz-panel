@@ -10,6 +10,7 @@ jobs:
 
     - name: Install Theos
       run: |
+        brew install ldid xz dpkg
         git clone --recursive https://github.com/theos/theos.git $HOME/theos
         echo "$HOME/theos/bin" >> $GITHUB_PATH
 
@@ -19,7 +20,7 @@ jobs:
         make package
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: MysizPanel-Tweak
         path: .theos/obj/debug/*.dylib
